@@ -61,35 +61,19 @@ Summary Statistics
 n_images       : 4
 n_dogs_img     : 2
 n_notdogs_img  : 2
-n_match        : 0
-n_correct_dogs : 1
-n_correct_notdogs: 1
-n_correct_breed: 0
 pct_match      : 0.0
 pct_correct_dogs: 50.0
 pct_correct_breed: 0.0
 pct_correct_notdogs: 50.0
 Incorrect dogs:
-	file_name:                  Cat_01.jpg
 	pet_label:                  cat
 	classifier_label:           cardigan, cardigan welsh corgi, corgi
-	pet_label_is_a_dog:         0
-	classifier_label_is_a_dog:  1
-
-	file_name:                  Dog_01.jpg
 	pet_label:                  dog
 	classifier_label:           dingo, warrigal, warragal, canis dingo
-	pet_label_is_a_dog:         1
-	classifier_label_is_a_dog:  0
-
 	Total count: 2
 Dogs with incorrect breed:
-	file_name:                  Dog_02.jpg
 	pet_label:                  dog
 	classifier_label:           pomeranian
-	pet_label_is_a_dog:         1
-	classifier_label_is_a_dog:  1
-
 	Total count: 1
 
 ** Total Elapsed Runtime: 0:0:0

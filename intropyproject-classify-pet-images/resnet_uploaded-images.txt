@@ -61,29 +61,17 @@ Summary Statistics
 n_images       : 4
 n_dogs_img     : 2
 n_notdogs_img  : 2
-n_match        : 1
-n_correct_dogs : 1
-n_correct_notdogs: 2
-n_correct_breed: 0
 pct_match      : 25.0
 pct_correct_dogs: 50.0
 pct_correct_breed: 0.0
 pct_correct_notdogs: 100.0
 Incorrect dogs:
-	file_name:                  Dog_01.jpg
 	pet_label:                  dog
 	classifier_label:           dingo, warrigal, warragal, canis dingo
-	pet_label_is_a_dog:         1
-	classifier_label_is_a_dog:  0
-
 	Total count: 1
 Dogs with incorrect breed:
-	file_name:                  Dog_02.jpg
 	pet_label:                  dog
 	classifier_label:           eskimo dog, husky
-	pet_label_is_a_dog:         1
-	classifier_label_is_a_dog:  1
-
 	Total count: 1
 
 ** Total Elapsed Runtime: 0:0:0

@@ -41,12 +41,6 @@ def get_classifications(image_classification_str):
     labels = [val.strip().lower() for val in image_classification_str.split(",")]
     return labels
 
-# TODO 3: Define classify_images function below, specifically replace the None
-#       below by the function definition of the classify_images function. 
-#       Notice that this function doesn't return anything because the 
-#       results_dic dictionary that is passed into the function is a mutable 
-#       data type so no return is needed.
-# 
 def classify_images(images_dir, results_dic, model):
     """
     Creates classifier labels with classifier function, compares pet labels to 
@@ -83,15 +77,16 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    file_names = os.listdir(images_dir)
-    for file_name in file_names:
-        image_classification_str = classifier(os.path.join(images_dir, file_name), model)
+    for file_name in results_dic:
+        image_file_path = os.path.join(images_dir, file_name)
+        if not os.path.isfile(image_file_path):
+            raise FileNotFoundError(f"Expected image file does not exist ({image_file_path}).")
+        image_classification_str = classifier(image_file_path, model).strip().lower()
         classification_list = get_classifications(image_classification_str)
-        reformatted_classifications_str = ", ".join(classification_list)
         actual_pet_label = results_dic[file_name][0]
         matches = 1 if actual_pet_label in classification_list else 0
         
         # add the reformatted classifications string and whether it matches to the 
         # corresponding results_dic entry
-        results_dic[file_name].extend([reformatted_classifications_str, matches])
+        results_dic[file_name].extend([image_classification_str, matches])
     return

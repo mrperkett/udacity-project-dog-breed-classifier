@@ -26,11 +26,6 @@
 #         This function does not output anything other than printing a summary
 #         of the final results.
 ##
-# TODO 6: Define print_results function below, specifically replace the None
-#       below by the function definition of the print_results function. 
-#       Notice that this function doesn't to return anything because it  
-#       prints a summary of the results using results_dic and results_stats_dic
-# 
 def print_results(results_dic, results_stats_dic, model, 
                   print_incorrect_dogs = False, print_incorrect_breed = False):
     """
@@ -66,10 +61,6 @@ def print_results(results_dic, results_stats_dic, model,
     stat_names = ["n_images",
             "n_dogs_img",
             "n_notdogs_img",
-            "n_match",
-            "n_correct_dogs",
-            "n_correct_notdogs",
-            "n_correct_breed",
             "pct_match",
             "pct_correct_dogs",
             "pct_correct_breed",
@@ -81,32 +72,30 @@ def print_results(results_dic, results_stats_dic, model,
 
     # if flag is set to True, then print anything that is not correctly classified as 
     # "dog" or "not a dog"
-    if print_incorrect_dogs:
+    n_correct_dogs = results_stats_dic["n_correct_dogs"]
+    n_correct_notdogs = results_stats_dic["n_correct_notdogs"]
+    n_images = results_stats_dic["n_images"]
+    if print_incorrect_dogs and (n_correct_dogs + n_correct_notdogs != n_images):
         print(f"Incorrect dogs:")
         incorrect_dog_count = 0
         for key, values in results_dic.items():
             if values[3] != values[4]:
                 incorrect_dog_count += 1
-                print(f"\tfile_name:                  {key}")
                 print(f"\tpet_label:                  {values[0]}")
                 print(f"\tclassifier_label:           {values[1]}")
-                print(f"\tpet_label_is_a_dog:         {values[3]}")
-                print(f"\tclassifier_label_is_a_dog:  {values[4]}\n")
         print(f"\tTotal count: {incorrect_dog_count}")
 
     # if flag is set to True, then print anything that is correctly identified as 
     # "dog", but does not get the breed correct
-    if print_incorrect_breed:
+    n_correct_breed = results_stats_dic["n_correct_breed"]
+    if print_incorrect_breed and (n_correct_dogs != n_correct_breed):
         print(f"Dogs with incorrect breed:")
         incorrect_breed_count = 0
         for key, values in results_dic.items():
             if values[3] == values[4] == 1 and values[2] == 0:
                 incorrect_breed_count += 1
-                print(f"\tfile_name:                  {key}")
                 print(f"\tpet_label:                  {values[0]}")
                 print(f"\tclassifier_label:           {values[1]}")
-                print(f"\tpet_label_is_a_dog:         {values[3]}")
-                print(f"\tclassifier_label_is_a_dog:  {values[4]}\n")
         print(f"\tTotal count: {incorrect_breed_count}")
 
     return

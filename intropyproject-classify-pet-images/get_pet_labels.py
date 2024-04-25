@@ -20,10 +20,6 @@
 from os import listdir
 import os.path
 
-# TODO 2: Define get_pet_labels function below please be certain to replace None
-#       in the return statement with results_dic dictionary that you create 
-#       with this function
-# 
 def get_pet_labels(image_dir):
     """
     Creates a dictionary of pet labels (results_dic) based upon the filenames 
@@ -43,8 +39,13 @@ def get_pet_labels(image_dir):
     """
     results_dic = dict()
     file_names = listdir(image_dir)
+    file_names.sort()
     for file_name in file_names:
-        # string the extension from file_name and split on "_"
+        # skip any files starting with "."
+        if file_name.startswith("."):
+            continue
+
+        # strip the extension from file_name and split on "_"
         base_name, _ = os.path.splitext(file_name)
         split_name = base_name.split("_")
         

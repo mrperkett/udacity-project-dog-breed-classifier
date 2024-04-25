@@ -37,11 +37,10 @@
 #            pct_correct_breed - percentage of correctly classified dog breeds
 #            pct_correct_notdogs - percentage of correctly classified NON-dogs
 #
-##
-# TODO 5: Define calculates_results_stats function below, please be certain to replace None
-#       in the return statement with the results_stats_dic dictionary that you create 
-#       with this function
-# 
+
+import math
+
+
 def calculates_results_stats(results_dic):
     """
     Calculates statistics of the results of the program run using classifier's model 
@@ -77,9 +76,15 @@ def calculates_results_stats(results_dic):
     n_correct_notdogs = len([1 for vals in results_dic.values() if vals[3] == vals[4] == 0])
     n_correct_breed = len([1 for vals in results_dic.values() if vals[3] == 1 and vals[2] == 1])
 
-    # do self-consistency check
+    # do self-consistency check on counts
     if n_dogs_img + n_notdogs_img != n_images:
         raise AssertionError("Logical error: n_dogs_img + n_notdogs_img != n_images")
+
+    # calculate percentages - any that would divide by zero are set to math.nan
+    pct_match = n_match / n_images * 100.0 if n_images > 0 else math.nan
+    pct_correct_dogs = n_correct_dogs / n_dogs_img * 100.0 if n_dogs_img > 0 else math.nan
+    pct_correct_breed = n_correct_breed / n_dogs_img * 100.0 if n_dogs_img > 0 else math.nan
+    pct_correct_notdogs = n_correct_notdogs / n_notdogs_img * 100.0 if n_notdogs_img > 0 else math.nan
 
     # add to results dictionary
     results_stats_dic = {
@@ -90,10 +95,10 @@ def calculates_results_stats(results_dic):
             "n_correct_dogs" : n_correct_dogs,
             "n_correct_notdogs" : n_correct_notdogs,
             "n_correct_breed" : n_correct_breed,
-            "pct_match" : n_match / n_images * 100.0,
-            "pct_correct_dogs" : n_correct_dogs / n_dogs_img * 100.0,
-            "pct_correct_breed" : n_correct_breed / n_dogs_img * 100.0,
-            "pct_correct_notdogs" : n_correct_notdogs / n_notdogs_img * 100.0
+            "pct_match" : pct_match,
+            "pct_correct_dogs" : pct_correct_dogs,
+            "pct_correct_breed" : pct_correct_breed,
+            "pct_correct_notdogs" : pct_correct_notdogs
     }
     
     return results_stats_dic
