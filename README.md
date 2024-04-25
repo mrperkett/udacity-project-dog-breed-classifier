@@ -10,16 +10,19 @@ Instructions for setting up and running locally using `pyenv`.
 
 ```
 pyenv install 3.11.7
-pyenv virtual-env udacity-dog-classifier 3.11.7
+pyenv virtualenv 3.11.7 udacity-dog-classifier
 pyenv local udacity-dog-classifier
+python3 -m pip install --upgrade pip
 
-git clone XX
-cd udacity-project-dog-breed-classifier/intropyproject-classify-pet-images
+git clone git@github.com:mrperkett/udacity-project-dog-breed-classifier.git
+cd udacity-project-dog-breed-classifier/
 python3 -m pip install -r requirements.txt
 ```
 
 # Running
 ```
+cd intropyproject-classify-pet-images
+
 # running on 40 provided images
 python3 ./check_images.py --dir pet_images --arch alexnet --dogfile dognames.txt > alexnet_pet-images.txt
 python3 ./check_images.py --dir pet_images --arch resnet --dogfile dognames.txt > resnet_pet-images.txt
