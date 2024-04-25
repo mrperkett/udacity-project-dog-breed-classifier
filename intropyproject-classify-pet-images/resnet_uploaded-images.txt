@@ -1,0 +1,89 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = resnet 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 4 key-value pairs.
+Below are 4 of them:
+ 1 key:                     Cat_01.jpg  label:                        cat
+ 2 key:                     Dog_01.jpg  label:                        dog
+ 3 key:                     Dog_02.jpg  label:                        dog
+ 4 key:                Sailboat_01.jpg  label:                   sailboat
+
+     MATCH:
+
+                    Cat_01.jpg: 
+Real:                        cat   Classifier:              egyptian cat, cat
+
+ NOT A MATCH:
+
+                    Dog_01.jpg: 
+Real:                        dog   Classifier: dingo, warrigal, warragal, canis dingo
+
+                    Dog_02.jpg: 
+Real:                        dog   Classifier:              eskimo dog, husky
+
+               Sailboat_01.jpg: 
+Real:                   sailboat   Classifier:                      catamaran
+
+# Total Images 4 # Matches: 1 # NOT Matches: 3
+
+     MATCH:
+
+                    Cat_01.jpg: 
+Real:                        cat   Classifier:              egyptian cat, cat  
+PetLabelDog: 0  ClassLabelDog: 0
+
+ NOT A MATCH:
+
+                    Dog_01.jpg: 
+Real:                        dog   Classifier: dingo, warrigal, warragal, canis dingo  
+PetLabelDog: 1  ClassLabelDog: 0
+
+                    Dog_02.jpg: 
+Real:                        dog   Classifier:              eskimo dog, husky  
+PetLabelDog: 1  ClassLabelDog: 1
+
+               Sailboat_01.jpg: 
+Real:                   sailboat   Classifier:                      catamaran  
+PetLabelDog: 0  ClassLabelDog: 0
+
+# Total Images 4 # Matches: 1 # NOT Matches: 3
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog:  50.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog:  50.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+Summary Statistics
+n_images       : 4
+n_dogs_img     : 2
+n_notdogs_img  : 2
+n_match        : 1
+n_correct_dogs : 1
+n_correct_notdogs: 2
+n_correct_breed: 0
+pct_match      : 25.0
+pct_correct_dogs: 50.0
+pct_correct_breed: 0.0
+pct_correct_notdogs: 100.0
+Incorrect dogs:
+	file_name:                  Dog_01.jpg
+	pet_label:                  dog
+	classifier_label:           dingo, warrigal, warragal, canis dingo
+	pet_label_is_a_dog:         1
+	classifier_label_is_a_dog:  0
+
+	Total count: 1
+Dogs with incorrect breed:
+	file_name:                  Dog_02.jpg
+	pet_label:                  dog
+	classifier_label:           eskimo dog, husky
+	pet_label_is_a_dog:         1
+	classifier_label_is_a_dog:  1
+
+	Total count: 1
+
+** Total Elapsed Runtime: 0:0:0
